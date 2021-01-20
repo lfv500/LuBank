@@ -21,6 +21,6 @@ namespace LuBank.Domain.Model.Customers
 
         public virtual ICollection<CustomerPhone> Phones { get; set; }
 
-        public virtual ICollection<CustomerDocuments> Documents { get; set; }
+        public virtual ICollection<CustomerDocument> Documents { get; set; }
     }
 }

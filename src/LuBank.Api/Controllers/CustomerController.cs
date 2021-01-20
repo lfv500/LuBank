@@ -9,9 +9,6 @@ namespace LuBank.Api.Controllers
     
     public class CustomerController : BaseApiController
     {
-        public IActionResult Add()
-        { 
-
-        }
+        
     }
 }

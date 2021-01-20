@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LuBank.Domain.Model.Customers
 {
-    public class CustomerDocuments
+    public class CustomerDocument
     {
         public Guid Guid { get; set; }
 
