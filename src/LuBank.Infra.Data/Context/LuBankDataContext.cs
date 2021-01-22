@@ -44,6 +44,9 @@ namespace LuBank.Infra.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new CustomerConfig());
+            modelBuilder.ApplyConfiguration(new CustomerAddressConfig());
+            modelBuilder.ApplyConfiguration(new CustomerDocumentConfig());
+            modelBuilder.ApplyConfiguration(new CustomerPhoneConfig());
 
             base.OnModelCreating(modelBuilder);
         }
