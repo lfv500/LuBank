@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,8 +22,8 @@ namespace LuBank.Domain.Interfaces.Repository
         /// Retorna todos os Clientes cadastrados
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Customer> GetAll();
-        
+        IEnumerable<Customer> GetAll(Expression<Func<Customer, bool>> predicate);
+
         /// <summary>
         /// Adiciona um Cliente no banco de dados
         /// </summary>
