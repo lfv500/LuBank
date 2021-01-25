@@ -15,8 +15,6 @@ namespace LuBank.Domain.Model.Customers
 
         public Guid AddressId { get; set; }
 
-        public CustomerDocumentType Type { get; set; }
-
         public virtual CustomerAddress Address { get; set; }
 
         public virtual ICollection<CustomerPhone> Phones { get; set; }

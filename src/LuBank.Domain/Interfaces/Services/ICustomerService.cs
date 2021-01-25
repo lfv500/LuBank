@@ -1,4 +1,5 @@
-﻿using LuBank.Domain.Model.Customers;
+﻿using FluentValidation.Results;
+using LuBank.Domain.Model.Customers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +16,12 @@ namespace LuBank.Domain.Interfaces.Services
         /// <summary>
         /// Cria um cliente no sistema
         /// </summary>
-        public void Add(Customer customer);
+        public ValidationResult Add(Customer customer);
 
         /// <summary>
         /// Realiza alteração em um cliente
         /// </summary>
         /// <param name="customer"></param>
-        public void Update(Customer customer);
+        public ValidationResult Update(Customer customer);
     }
 }
