@@ -21,5 +21,9 @@ namespace LuBank.Application.Interfaces.AppService
         ValidationResult Add(CustomerViewModel customer);
 
         ValidationResult Update(CustomerViewModel customer);
+
+        IEnumerable<CustomerViewModel> GetAll();
+
+        IEnumerable<CustomerViewModel> GetAllByName(string name);
     }
 }
