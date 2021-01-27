@@ -1,6 +1,8 @@
-﻿using FluentValidation.Results;
+﻿using AutoMapper;
+using FluentValidation.Results;
 using LuBank.Application.Interfaces.AppService;
 using LuBank.Application.ViewModel.Customers;
+using LuBank.Domain.Interfaces.Repository;
 using LuBank.Domain.Interfaces.Services;
 using LuBank.Domain.Model.Customers;
 using System;
@@ -14,43 +16,46 @@ namespace LuBank.Application.AppService
     public class CustomerAppService : ICustomerAppService
     {
         private readonly ICustomerService _customerService;
+        private readonly ICustomerRepository _customerRepository;
+        private readonly IMapper _mapper;
 
-        public CustomerAppService(ICustomerService customerService)
+        public CustomerAppService(ICustomerService customerService,
+            ICustomerRepository customerRepository,
+            IMapper mapper)
         {
             _customerService = customerService;
+            _customerRepository = customerRepository;
+            _mapper = mapper;
         }
 
-        public ValidationResult Add(CustomerViewModel customer)
+        public ValidationResult Add(CustomerViewModel customerViewModel)
         {
-            //TODO: implementar auto mapper
-            var customerModel = new Customer();
-            customerModel.Id = customer.Id;
-            customerModel.Name = customer.Name;
-            customerModel.Address = new CustomerAddress();
-            customerModel.Address.Id = customer.Address.Id;
-            
-
-            return _customerService.Add(customerModel);
+            var customer = _mapper.Map<CustomerViewModel, Customer>(customerViewModel);
+            return _customerService.Add(customer);
         }
 
         public IEnumerable<CustomerViewModel> GetAll()
         {
-            throw new NotImplementedException();
+            var result = _customerRepository.GetAll(null);
+            return _mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerViewModel>>(result);
         }
 
         public IEnumerable<CustomerViewModel> GetAllByName(string name)
         {
-            throw new NotImplementedException();
+            var result = _customerRepository.GetAll(e=> e.Name.Contains(name)); //equivalente a: where c.name like %name%
+            return _mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerViewModel>>(result);
         }
 
         public CustomerViewModel GetById(Guid id)
         {
-            throw new NotImplementedException();
+            var result = _customerRepository.GetById(id);
+            return _mapper.Map<Customer, CustomerViewModel>(result);
         }
 
-        public ValidationResult Update(CustomerViewModel customer)
+        public ValidationResult Update(CustomerViewModel customerViewModel)
         {
-            throw new NotImplementedException();
+            var customer = _mapper.Map<CustomerViewModel, Customer>(customerViewModel);
+            return _customerService.Update(customer);
         }
     }
 }

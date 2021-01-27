@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LuBank.Application\LuBank.Application.csproj" />
     <ProjectReference Include="..\LuBank.Domain\LuBank.Domain.csproj" />
     <ProjectReference Include="..\LuBank.Infra.Data\LuBank.Infra.Data.csproj" />
   </ItemGroup>

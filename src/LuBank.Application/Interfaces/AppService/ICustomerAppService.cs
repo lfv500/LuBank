@@ -18,9 +18,9 @@ namespace LuBank.Application.Interfaces.AppService
         /// <returns></returns>
         CustomerViewModel GetById(Guid id);
 
-        ValidationResult Add(CustomerViewModel customer);
+        ValidationResult Add(CustomerViewModel customerViewModel);
 
-        ValidationResult Update(CustomerViewModel customer);
+        ValidationResult Update(CustomerViewModel customerViewModel);
 
         IEnumerable<CustomerViewModel> GetAll();
 

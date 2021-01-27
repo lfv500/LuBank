@@ -1,4 +1,6 @@
-﻿using LuBank.Domain.Interfaces.Repository;
+﻿using AutoMapper;
+using LuBank.Application.AutoMapper;
+using LuBank.Domain.Interfaces.Repository;
 using LuBank.Domain.Interfaces.Services;
 using LuBank.Domain.Services;
 using LuBank.Infra.Data.Repository;
@@ -16,6 +18,11 @@ namespace LuBank.Infra.IOC
 
             //Infra Data
             services.AddTransient<ICustomerRepository, CustomerRepository>();
+
+            //Registrando AutoMapper
+            var mapperConfig = AutoMapperConfig.RegisterMappings();
+            var mapper = mapperConfig.CreateMapper();
+            services.AddSingleton<IMapper>(mapper);
         }
     }
 }
