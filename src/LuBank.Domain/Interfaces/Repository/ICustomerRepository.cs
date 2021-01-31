@@ -33,5 +33,15 @@ namespace LuBank.Domain.Interfaces.Repository
         /// Atualiza um Cliente no Banco de dados
         /// </summary>
         public void Update(Customer customer);
+
+        /// <summary>
+        /// Retorna true se o cliente existir
+        /// </summary>
+        bool Exists(Guid id);
+
+        /// <summary>
+        /// Remove um cliente do banco de dados
+        /// </summary>
+        void Remove(Guid id);
     }
 }

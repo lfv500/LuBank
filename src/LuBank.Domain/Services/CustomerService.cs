@@ -13,11 +13,11 @@ namespace LuBank.Domain.Services
 {
     public class CustomerService : ICustomerService
     {
-        private readonly ICustomerRepository _custtomerRepository;
+        private readonly ICustomerRepository _customerRepository;
 
         public CustomerService(ICustomerRepository custtomerRepository)
         {
-            _custtomerRepository = custtomerRepository;
+            _customerRepository = custtomerRepository;
         }
 
         public ValidationResult Add(Customer customer)
@@ -30,8 +30,22 @@ namespace LuBank.Domain.Services
                 return validationResult;
 
             //Incluir no Banco de Dados
-            _custtomerRepository.Add(customer);
+            _customerRepository.Add(customer);
             return validationResult;
+        }
+
+        public ValidationResult Remove(Guid id)
+        {
+            var result = new ValidationResult();
+
+            if (!_customerRepository.Exists(id))
+            {
+                result.Errors.Add(new ValidationFailure("id", "Cliente inexistente"));
+                return result;
+            }
+
+            _customerRepository.Remove(id);
+            return result;
         }
 
         public ValidationResult Update(Customer customer)
@@ -44,7 +58,7 @@ namespace LuBank.Domain.Services
                 return validationResult;
 
             //Realiza alterações no Banco de Dados
-            _custtomerRepository.Update(customer);
+            _customerRepository.Update(customer);
             return validationResult;
         }
     }

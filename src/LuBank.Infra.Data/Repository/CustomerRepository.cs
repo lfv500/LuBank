@@ -26,6 +26,9 @@ namespace LuBank.Infra.Data.Repository
 
         public IEnumerable<Customer> GetAll(Expression<Func<Customer, bool>> predicate)
         {
+            if (predicate == null)
+                return Db.Customers.ToList();
+
             return Db.Customers
                 .Where(predicate)
                 .ToList();
@@ -41,6 +44,17 @@ namespace LuBank.Infra.Data.Repository
         {
             Db.Customers
                 .Update(customer);
+        }
+
+        public bool Exists(Guid id)
+        {
+            return Db.Customers.Any(e => e.Id == id);
+        }
+
+        public void Remove(Guid id)
+        {
+            var customer = GetById(id);
+            Db.Customers.Remove(customer);
         }
 
         public void Dispose()

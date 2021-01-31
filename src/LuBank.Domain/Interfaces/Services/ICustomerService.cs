@@ -23,5 +23,11 @@ namespace LuBank.Domain.Interfaces.Services
         /// </summary>
         /// <param name="customer"></param>
         public ValidationResult Update(Customer customer);
+
+        /// <summary>
+        /// Remove um cliente
+        /// </summary>
+        /// <param name="id">Id do cliente a ser removido</param>
+        ValidationResult Remove(Guid id);
     }
 }

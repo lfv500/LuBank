@@ -22,6 +22,8 @@ namespace LuBank.Application.Interfaces.AppService
 
         ValidationResult Update(CustomerViewModel customerViewModel);
 
+        ValidationResult Remove(Guid id);
+
         IEnumerable<CustomerViewModel> GetAll();
 
         IEnumerable<CustomerViewModel> GetAllByName(string name);

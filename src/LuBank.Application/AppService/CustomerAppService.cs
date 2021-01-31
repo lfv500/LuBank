@@ -52,6 +52,11 @@ namespace LuBank.Application.AppService
             return _mapper.Map<Customer, CustomerViewModel>(result);
         }
 
+        public ValidationResult Remove(Guid id)
+        {
+            return _customerService.Remove(id);
+        }
+
         public ValidationResult Update(CustomerViewModel customerViewModel)
         {
             var customer = _mapper.Map<CustomerViewModel, Customer>(customerViewModel);
