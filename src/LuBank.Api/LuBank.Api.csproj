@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\LuBank.Application\LuBank.Application.csproj" />
     <ProjectReference Include="..\LuBank.Infra.IOC\LuBank.Infra.IOC.csproj" />
   </ItemGroup>
