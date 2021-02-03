@@ -15,7 +15,7 @@ namespace LuBank.Infra.Data.Context
     /// <summary>
     /// Data context LuBank
     /// </summary>
-    public class LuBankDataContext : DbContext, IUnitOfWork
+    public class LuBankDataContext : DbContext
     {
         #region :: DbSets de Entidades
 
@@ -59,11 +59,6 @@ namespace LuBank.Infra.Data.Context
                 .Build();
 
             optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
-        }
-
-        public Task<bool> Commit()
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FluentValidation.Results;
+using LuBank.Domain.Interfaces;
 using LuBank.Domain.Interfaces.Repository;
 using LuBank.Domain.Interfaces.Services;
 using LuBank.Domain.Model.Customers;
@@ -14,10 +15,13 @@ namespace LuBank.Domain.Services
     public class CustomerService : ICustomerService
     {
         private readonly ICustomerRepository _customerRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CustomerService(ICustomerRepository custtomerRepository)
+        public CustomerService(ICustomerRepository customerRepository, 
+            IUnitOfWork unitOfWork)
         {
-            _customerRepository = custtomerRepository;
+            _customerRepository = customerRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public ValidationResult Add(Customer customer)
@@ -31,6 +35,8 @@ namespace LuBank.Domain.Services
 
             //Incluir no Banco de Dados
             _customerRepository.Add(customer);
+            _unitOfWork.Commit();
+
             return validationResult;
         }
 
@@ -45,6 +51,7 @@ namespace LuBank.Domain.Services
             }
 
             _customerRepository.Remove(id);
+            _unitOfWork.Commit();
             return result;
         }
 
@@ -59,6 +66,7 @@ namespace LuBank.Domain.Services
 
             //Realiza alterações no Banco de Dados
             _customerRepository.Update(customer);
+            _unitOfWork.Commit();
             return validationResult;
         }
     }

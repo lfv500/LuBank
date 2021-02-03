@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace LuBank.Api.Controllers
 {
     [ApiController]
-    [Produces("ApplicationException/json")]
+    [Produces("application/json")]
     public abstract class BaseApiController: Controller
     {
     }

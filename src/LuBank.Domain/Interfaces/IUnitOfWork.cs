@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace LuBank.Domain.Interfaces
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
-        Task<bool> Commit();
+        bool Commit();
     }
 }

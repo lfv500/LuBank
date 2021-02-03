@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace LuBank.Domain.Model.Customers
 {
-    public class CustomerPhone
+    public class CustomerPhone : Entity
     {
-        public Guid Id { get; set; }
-
         public Guid CustomerId { get; set; }
 
         public int Ddd { get; set; }
