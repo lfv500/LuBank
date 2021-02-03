@@ -47,7 +47,7 @@ namespace LuBank.Infra.Data.Context
             modelBuilder.ApplyConfiguration(new CustomerAddressConfig());
             modelBuilder.ApplyConfiguration(new CustomerDocumentConfig());
             modelBuilder.ApplyConfiguration(new CustomerPhoneConfig());
-
+            
             base.OnModelCreating(modelBuilder);
         }
 

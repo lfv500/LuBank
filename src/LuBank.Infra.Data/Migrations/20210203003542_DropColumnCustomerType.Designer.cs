@@ -4,14 +4,16 @@ using LuBank.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LuBank.Infra.Data.Migrations
 {
     [DbContext(typeof(LuBankDataContext))]
-    partial class LuBankDataContextModelSnapshot : ModelSnapshot
+    [Migration("20210203003542_DropColumnCustomerType")]
+    partial class DropColumnCustomerType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -13,10 +13,10 @@ namespace LuBank.Domain.Model.Customers
 
         public Guid AddressId { get; set; }
 
-        public virtual CustomerAddress Address { get; set; }
+        public CustomerAddress Address { get; set; }
 
-        public virtual ICollection<CustomerPhone> Phones { get; set; }
+        public ICollection<CustomerPhone> Phones { get; set; }
 
-        public virtual ICollection<CustomerDocument> Documents { get; set; }
+        public ICollection<CustomerDocument> Documents { get; set; }
     }
 }

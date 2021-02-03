@@ -1,6 +1,7 @@
 ﻿using LuBank.Domain.Interfaces.Repository;
 using LuBank.Domain.Model.Customers;
 using LuBank.Infra.Data.Context;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,10 +27,15 @@ namespace LuBank.Infra.Data.Repository
 
         public IEnumerable<Customer> GetAll(Expression<Func<Customer, bool>> predicate)
         {
-            if (predicate == null)
-                return Db.Customers.ToList();
+            var customers = Db.Customers
+                    .Include(e => e.Documents)
+                    .Include(e => e.Phones)
+                    .Include(e => e.Address);
 
-            return Db.Customers
+            if (predicate == null)
+                return customers.ToList();
+
+            return customers
                 .Where(predicate)
                 .ToList();
         }
