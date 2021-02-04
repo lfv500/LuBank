@@ -16,7 +16,7 @@ namespace LuBank.Infra.IOC
 {
     public static class InversionOfControl
     {
-        public static void RegisterServices(this IServiceCollection services)
+        public static IServiceCollection RegisterServices(this IServiceCollection services)
         {
             //App Services
             services.AddScoped<ICustomerAppService, CustomerAppService>();
@@ -33,6 +33,8 @@ namespace LuBank.Infra.IOC
             var mapperConfig = AutoMapperConfig.RegisterMappings();
             var mapper = mapperConfig.CreateMapper();
             services.AddSingleton<IMapper>(mapper);
+
+            return services;
         }
     }
 }

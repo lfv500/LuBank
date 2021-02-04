@@ -12,10 +12,23 @@ namespace LuBank.Presentation.WinForm
 {
     public partial class FormMain : Form
     {
-        public FormMain()
+        protected readonly FormCustomer _formCustomer;
+
+        public FormMain(FormCustomer formCustomer)
         {
+            _formCustomer = formCustomer;
             InitializeComponent();
         }
 
+        private void tsmFileClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void tsmRegistrationsCustomer_Click(object sender, EventArgs e)
+        {
+            _formCustomer.MdiParent = this;
+            _formCustomer.Show();
+        }
     }
 }
