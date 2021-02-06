@@ -7,28 +7,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace LuBank.Presentation.WinForm
 {
     public partial class FormMain : Form
     {
-        protected readonly FormCustomer _formCustomer;
-
-        public FormMain(FormCustomer formCustomer)
+        protected readonly IServiceProvider _serviceProvider;
+        public FormMain(IServiceProvider serviceProvider)
         {
-            _formCustomer = formCustomer;
+            _serviceProvider = serviceProvider;
             InitializeComponent();
         }
 
         private void tsmFileClose_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+            => Close();
 
         private void tsmRegistrationsCustomer_Click(object sender, EventArgs e)
         {
-            _formCustomer.MdiParent = this;
-            _formCustomer.Show();
+            var formCostumer = _serviceProvider.GetService<FormCustomer>();
+            formCostumer.MdiParent = this;
+            formCostumer.Show();
         }
     }
 }

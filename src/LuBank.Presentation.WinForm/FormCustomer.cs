@@ -20,5 +20,21 @@ namespace LuBank.Presentation.WinForm
             _customerAppService = customerAppService;
             InitializeComponent();
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+            => DoSearch();
+
+        private void DoSearch()
+        {
+            using (var control = new LockControl(this))
+            {
+                var searchText = txtSearch.Text;
+                var result = string.IsNullOrWhiteSpace(searchText)
+                    ? _customerAppService.GetAll()
+                    : _customerAppService.GetAllByName(searchText);
+
+                dgvCustomers.DataSource = result;
+            }
+        }
     }
 }

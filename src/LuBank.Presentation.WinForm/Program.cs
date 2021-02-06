@@ -37,8 +37,7 @@ namespace LuBank.Presentation.WinForm
             var builder = new ConfigurationBuilder();
             var currentDirectory = Directory.GetCurrentDirectory();
             var appSettingsName = "appSettings.json";
-            var appSettingsFileName = Path.Combine(currentDirectory, appSettingsName);
-
+            
             return builder
                 .SetBasePath(currentDirectory)
                 .AddJsonFile(appSettingsName, true)
@@ -49,7 +48,7 @@ namespace LuBank.Presentation.WinForm
         {
             return serviceProvider
                 .AddSingleton<FormMain>()
-                .AddScoped<FormCustomer>();
+                .AddTransient<FormCustomer>();
         }
     }
 }
