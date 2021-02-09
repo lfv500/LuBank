@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace LuBank.Presentation.WinForm
 {
-    public partial class FormMain : Form
+    public partial class FormMain : FormBase
     {
         protected readonly IServiceProvider _serviceProvider;
         public FormMain(IServiceProvider serviceProvider)

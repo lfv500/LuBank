@@ -11,13 +11,16 @@ using System.Windows.Forms;
 
 namespace LuBank.Presentation.WinForm
 {
-    public partial class FormCustomer : Form
+    public partial class FormCustomer : FormBase
     {
         protected readonly ICustomerAppService _customerAppService;
+        protected readonly FormCustomerAdd _formCustomerAdd;
 
-        public FormCustomer(ICustomerAppService customerAppService)
+        public FormCustomer(ICustomerAppService customerAppService,
+            FormCustomerAdd formCustomerAdd)
         {
             _customerAppService = customerAppService;
+            _formCustomerAdd = formCustomerAdd;
             InitializeComponent();
         }
 
@@ -35,6 +38,11 @@ namespace LuBank.Presentation.WinForm
 
                 dgvCustomers.DataSource = result;
             }
+        }
+
+        private void btnNewCustomer_Click(object sender, EventArgs e)
+        {
+            _formCustomerAdd.ShowDialog(this);
         }
     }
 }
