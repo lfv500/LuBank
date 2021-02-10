@@ -37,7 +37,7 @@ namespace LuBank.Presentation.WinForm
             this.txtRg = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtComplement = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -73,7 +73,7 @@ namespace LuBank.Presentation.WinForm
             this.grpName.Controls.Add(this.txtRg);
             this.grpName.Controls.Add(this.label8);
             this.grpName.Controls.Add(this.label1);
-            this.grpName.Controls.Add(this.textBox1);
+            this.grpName.Controls.Add(this.txtName);
             this.grpName.Location = new System.Drawing.Point(12, 12);
             this.grpName.Name = "grpName";
             this.grpName.Size = new System.Drawing.Size(489, 151);
@@ -144,14 +144,14 @@ namespace LuBank.Presentation.WinForm
             this.label1.TabIndex = 1;
             this.label1.Text = "Nome:";
             // 
-            // textBox1
+            // txtName
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(15, 39);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(448, 23);
-            this.textBox1.TabIndex = 0;
+            this.txtName.Location = new System.Drawing.Point(15, 39);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(448, 23);
+            this.txtName.TabIndex = 0;
             // 
             // groupBox1
             // 
@@ -328,6 +328,7 @@ namespace LuBank.Presentation.WinForm
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Salvar";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // FormCustomerAdd
             // 
@@ -351,7 +352,7 @@ namespace LuBank.Presentation.WinForm
 
         private System.Windows.Forms.GroupBox grpName;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtNumber;
