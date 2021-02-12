@@ -36,8 +36,7 @@ namespace LuBank.Presentation.WinForm
                 //Caso haja erros de validação
                 if (!validationResult.IsValid)
                 {
-                    MessageBox.Show(validationResult.GetErrorMessage(), "Atenção", 
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    ShowValidationErrors(validationResult);
                     return;
                 }
 
@@ -45,6 +44,22 @@ namespace LuBank.Presentation.WinForm
                 MessageBox.Show("Cliente cadastrado com sucesso!");
                 Close();
             }
+        }
+
+        private void CleanScreen(Control control)
+        {
+            foreach (Control ctrl in control.Controls)
+            {
+                if (ctrl is TextBox)
+                {
+                    var textBox = ctrl as TextBox;
+                    textBox.Text = string.Empty;
+                }
+                else
+
+                    CleanScreen(ctrl);
+            }
+
         }
 
         private CustomerViewModel GetCustomerFromForm()
@@ -89,5 +104,8 @@ namespace LuBank.Presentation.WinForm
                 }
             };
         }
+
+        private void FormCustomerAdd_FormClosed(object sender, FormClosedEventArgs e)
+         => CleanScreen(this);
     }
 }

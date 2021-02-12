@@ -44,5 +44,33 @@ namespace LuBank.Presentation.WinForm
         {
             _formCustomerAdd.ShowDialog(this);
         }
+
+        private void dgvCustomers_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Delete:
+                    if (sender == dgvCustomers && dgvCustomers.SelectedRows.Count > 0)
+                        if (Guid.TryParse(dgvCustomers.SelectedRows[0].Cells["Id"].Value.ToString(), out var id))
+                            DeleteCustomer(id);
+                    break;
+            }
+        }
+
+        private void DeleteCustomer(Guid id)
+        {
+            using (new LockControl(this))
+            {
+                var result = _customerAppService.Remove(id);
+
+                if (!result.IsValid)
+                {
+                    ShowValidationErrors(result);
+                    return;
+                }
+
+                DoSearch();
+            }
+        }
     }
 }

@@ -110,11 +110,16 @@ namespace LuBank.Presentation.WinForm
             this.dgvCustomers.BackgroundColor = System.Drawing.Color.White;
             this.dgvCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCustomers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvCustomers.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
             this.dgvCustomers.Location = new System.Drawing.Point(3, 19);
+            this.dgvCustomers.MultiSelect = false;
             this.dgvCustomers.Name = "dgvCustomers";
+            this.dgvCustomers.ReadOnly = true;
             this.dgvCustomers.RowTemplate.Height = 25;
+            this.dgvCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCustomers.Size = new System.Drawing.Size(769, 298);
             this.dgvCustomers.TabIndex = 0;
+            this.dgvCustomers.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgvCustomers_KeyUp);
             // 
             // FormCustomer
             // 

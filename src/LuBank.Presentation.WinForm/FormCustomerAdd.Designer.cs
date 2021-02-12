@@ -30,6 +30,8 @@ namespace LuBank.Presentation.WinForm
         private void InitializeComponent()
         {
             this.grpName = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtPhoneArea = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtCpf = new System.Windows.Forms.TextBox();
@@ -53,8 +55,6 @@ namespace LuBank.Presentation.WinForm
             this.txtNumber = new System.Windows.Forms.TextBox();
             this.txtStreet = new System.Windows.Forms.TextBox();
             this.labelStreet = new System.Windows.Forms.Label();
-            this.txtPhoneArea = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.grpName.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -80,6 +80,24 @@ namespace LuBank.Presentation.WinForm
             this.grpName.TabIndex = 0;
             this.grpName.TabStop = false;
             this.grpName.Text = "Dados básicos";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(298, 70);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(31, 15);
+            this.label11.TabIndex = 22;
+            this.label11.Text = "Area";
+            // 
+            // txtPhoneArea
+            // 
+            this.txtPhoneArea.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPhoneArea.Location = new System.Drawing.Point(298, 89);
+            this.txtPhoneArea.Name = "txtPhoneArea";
+            this.txtPhoneArea.Size = new System.Drawing.Size(51, 23);
+            this.txtPhoneArea.TabIndex = 21;
             // 
             // txtPhone
             // 
@@ -302,24 +320,6 @@ namespace LuBank.Presentation.WinForm
             this.labelStreet.TabIndex = 0;
             this.labelStreet.Text = "Logradouro";
             // 
-            // txtPhoneArea
-            // 
-            this.txtPhoneArea.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPhoneArea.Location = new System.Drawing.Point(298, 89);
-            this.txtPhoneArea.Name = "txtPhoneArea";
-            this.txtPhoneArea.Size = new System.Drawing.Size(51, 23);
-            this.txtPhoneArea.TabIndex = 21;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(298, 70);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(31, 15);
-            this.label11.TabIndex = 22;
-            this.label11.Text = "Area";
-            // 
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(215, 442);
@@ -340,6 +340,7 @@ namespace LuBank.Presentation.WinForm
             this.Controls.Add(this.grpName);
             this.Name = "FormCustomerAdd";
             this.Text = "Novo Cliente";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormCustomerAdd_FormClosed);
             this.grpName.ResumeLayout(false);
             this.grpName.PerformLayout();
             this.groupBox1.ResumeLayout(false);
