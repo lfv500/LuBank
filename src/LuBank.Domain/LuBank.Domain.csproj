@@ -9,7 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="9.4.0" />
+    <PackageReference Include="Extensions.FluentValidation.Br" Version="1.0.1" />
+    <PackageReference Include="FluentValidation" Version="9.5.1" />
   </ItemGroup>
 
 </Project>

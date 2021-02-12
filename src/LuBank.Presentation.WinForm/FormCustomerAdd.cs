@@ -1,5 +1,6 @@
 ﻿using LuBank.Application.Interfaces.AppService;
 using LuBank.Application.ViewModel.Customers;
+using LuBank.Infra.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,12 +33,15 @@ namespace LuBank.Presentation.WinForm
                 var customer = GetCustomerFromForm();
                 var validationResult = _customerAppService.Add(customer);
 
+                //Caso haja erros de validação
                 if (!validationResult.IsValid)
                 {
-                    MessageBox.Show("Erro de validação a implementar");
+                    MessageBox.Show(validationResult.GetErrorMessage(), "Atenção", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
+                //Caso sucesso
                 MessageBox.Show("Cliente cadastrado com sucesso!");
                 Close();
             }

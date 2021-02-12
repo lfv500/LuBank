@@ -32,6 +32,7 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\LuBank.Application\LuBank.Application.csproj" />
 	  <ProjectReference Include="..\LuBank.Infra.IOC\LuBank.Infra.IOC.csproj" />
+	  <ProjectReference Include="..\LuBank.Infra.Utils\LuBank.Infra.Utils.csproj" />
 	</ItemGroup>
 
 </Project>
