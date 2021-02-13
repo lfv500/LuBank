@@ -49,7 +49,8 @@ namespace LuBank.Presentation.WinForm
             return serviceProvider
                 .AddSingleton<FormMain>()
                 .AddTransient<FormCustomer>()
-                .AddTransient<FormCustomerAdd>();
+                .AddTransient<FormCustomerAdd>()
+                .AddTransient<FormCustomerEdit>();
         }
     }
 }

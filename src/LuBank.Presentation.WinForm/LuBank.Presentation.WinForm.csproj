@@ -35,4 +35,10 @@
 	  <ProjectReference Include="..\LuBank.Infra.Utils\LuBank.Infra.Utils.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Compile Update="FormCustomerEdit.cs">
+	    <SubType>Form</SubType>
+	  </Compile>
+	</ItemGroup>
+
 </Project>

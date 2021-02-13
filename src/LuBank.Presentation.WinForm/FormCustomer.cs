@@ -15,12 +15,15 @@ namespace LuBank.Presentation.WinForm
     {
         protected readonly ICustomerAppService _customerAppService;
         protected readonly FormCustomerAdd _formCustomerAdd;
+        protected readonly FormCustomerEdit _formCustomerEdit;
 
         public FormCustomer(ICustomerAppService customerAppService,
-            FormCustomerAdd formCustomerAdd)
+            FormCustomerAdd formCustomerAdd,
+            FormCustomerEdit formCustomerEdit)
         {
             _customerAppService = customerAppService;
             _formCustomerAdd = formCustomerAdd;
+            _formCustomerEdit = formCustomerEdit;
             InitializeComponent();
         }
 
@@ -47,14 +50,24 @@ namespace LuBank.Presentation.WinForm
 
         private void dgvCustomers_KeyUp(object sender, KeyEventArgs e)
         {
-            switch (e.KeyCode)
+            //Se tecla apertada em cima do grid
+            if (sender == dgvCustomers && dgvCustomers.SelectedRows.Count > 0)
             {
-                case Keys.Delete:
-                    if (sender == dgvCustomers && dgvCustomers.SelectedRows.Count > 0)
-                        if (Guid.TryParse(dgvCustomers.SelectedRows[0].Cells["Id"].Value.ToString(), out var id))
-                            DeleteCustomer(id);
-                    break;
+                Guid.TryParse(dgvCustomers.SelectedRows[0].Cells["Id"].Value.ToString(), out var id);
+
+                switch (e.KeyCode)
+                {
+                    case Keys.Delete: DeleteCustomer(id); break;
+                    case Keys.Enter: EditCustomer(id); break;
+                }
             }
+        }
+
+        private void EditCustomer(Guid id)
+        {
+            _formCustomerEdit.LoadCustomer(id);
+            _formCustomerEdit.ShowDialog(this);
+            DoSearch();
         }
 
         private void DeleteCustomer(Guid id)
@@ -70,6 +83,15 @@ namespace LuBank.Presentation.WinForm
                 }
 
                 DoSearch();
+            }
+        }
+
+        private void dgvCustomers_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (sender == dgvCustomers && dgvCustomers.SelectedRows.Count > 0)
+            {
+                if(Guid.TryParse(dgvCustomers.SelectedRows[0].Cells["Id"].Value.ToString(), out var id))
+                    EditCustomer(id);
             }
         }
     }

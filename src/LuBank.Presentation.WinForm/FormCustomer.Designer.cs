@@ -120,6 +120,7 @@ namespace LuBank.Presentation.WinForm
             this.dgvCustomers.Size = new System.Drawing.Size(769, 298);
             this.dgvCustomers.TabIndex = 0;
             this.dgvCustomers.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgvCustomers_KeyUp);
+            this.dgvCustomers.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvCustomers_MouseDoubleClick);
             // 
             // FormCustomer
             // 

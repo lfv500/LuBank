@@ -13,11 +13,12 @@ using System.Windows.Forms;
 
 namespace LuBank.Presentation.WinForm
 {
-    public partial class FormCustomerAdd : FormBase
+    public partial class FormCustomerEdit : FormBase
     {
+        private Guid _customerId;
         protected readonly ICustomerAppService _customerAppService;
 
-        public FormCustomerAdd(ICustomerAppService customerAppService)
+        public FormCustomerEdit(ICustomerAppService customerAppService)
         {
             _customerAppService = customerAppService;
             InitializeComponent();
@@ -31,7 +32,7 @@ namespace LuBank.Presentation.WinForm
             using (var lockControl = new LockControl(this))
             {
                 var customer = GetCustomerFromForm();
-                var validationResult = _customerAppService.Add(customer);
+                var validationResult = _customerAppService.Update(customer);
 
                 //Caso haja erros de validação
                 if (!validationResult.IsValid)
@@ -41,25 +42,46 @@ namespace LuBank.Presentation.WinForm
                 }
 
                 //Caso sucesso
-                MessageBox.Show("Cliente cadastrado com sucesso!");
+                MessageBox.Show("Cliente alterado com sucesso!");
                 Close();
             }
         }
 
-        private void CleanScreen(Control control)
+        /// <summary>
+        /// Carrega um cliente no form
+        /// </summary>
+        public void LoadCustomer(Guid id)
         {
-            foreach (Control ctrl in control.Controls)
-            {
-                if (ctrl is TextBox)
-                {
-                    var textBox = ctrl as TextBox;
-                    textBox.Text = string.Empty;
-                }
-                else
+            _customerId = id;
+            ClearScreen<TextBox>(this);
+            var customer = _customerAppService.GetById(id);
 
-                    CleanScreen(ctrl);
-            }
+            if (customer == null)
+                return;
 
+            //Name
+            txtName.Text = customer.Name;
+
+            //Documentos
+            txtRg.Text = customer.Documents
+                .FirstOrDefault(e => e.Type == Application.Enum.Customers.CustomerDocumentType.Rg)?.Value;
+
+            txtCpf.Text = customer.Documents
+                .FirstOrDefault(e => e.Type == Application.Enum.Customers.CustomerDocumentType.Cpf)?.Value;
+
+            //Endereço
+            txtNumber.Text = customer.Address.Number.ToString();
+            txtCity.Text = customer.Address.City;
+            txtComplement.Text = customer.Address.Complement;
+            txtNeighborhood.Text = customer.Address.Neighborhood;
+            txtProvince.Text = customer.Address.Province;
+            txtStreet.Text = customer.Address.Street;
+            txtZipCode.Text = customer.Address.ZipCode;
+
+            //Telefone
+            var phone = customer.Phones.FirstOrDefault();
+            txtPhoneArea.Text = phone?.Ddd.ToString();
+            txtPhone.Text = phone?.Number.ToString();
         }
 
         private CustomerViewModel GetCustomerFromForm()
@@ -80,8 +102,8 @@ namespace LuBank.Presentation.WinForm
 
             int.TryParse(txtPhoneArea.Text, out var ddd);
             var phones = new List<CustomerPhoneViewModel>();
-            phones.Add(new CustomerPhoneViewModel 
-            { 
+            phones.Add(new CustomerPhoneViewModel
+            {
                 Area = 55,
                 Ddd = ddd,
                 Number = txtPhone.Text
@@ -89,6 +111,7 @@ namespace LuBank.Presentation.WinForm
 
             return new CustomerViewModel
             {
+                Id = _customerId,
                 Name = txtName.Text,
                 Documents = documents,
                 Phones = phones,

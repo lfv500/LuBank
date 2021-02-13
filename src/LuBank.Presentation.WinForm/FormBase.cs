@@ -30,5 +30,22 @@ namespace LuBank.Presentation.WinForm
             MessageBox.Show(validationResult.GetErrorMessage(), "Atenção", 
                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
+
+        protected void ClearScreen<TControl>(Control control)
+            where TControl : Control
+        {
+            foreach (Control ctrl in control.Controls)
+            {
+                if (ctrl is TControl)
+                {
+                    var textBox = ctrl as TControl;
+                    textBox.Text = string.Empty;
+                }
+                else
+
+                    ClearScreen<TControl>(ctrl);
+            }
+
+        }
     }
 }

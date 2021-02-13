@@ -64,8 +64,11 @@ namespace LuBank.Domain.Services
             if (!validationResult.IsValid)
                 return validationResult;
 
+            var databaseCustomer = _customerRepository.GetById(customer.Id);
+            databaseCustomer.Name = customer.Name;
+            
             //Realiza alterações no Banco de Dados
-            _customerRepository.Update(customer);
+            _customerRepository.Update(databaseCustomer);
             _unitOfWork.Commit();
             return validationResult;
         }
