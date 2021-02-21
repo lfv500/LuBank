@@ -1,0 +1,39 @@
+﻿@using LuBank.Application.ViewModel.Customers
+
+@model IEnumerable<CustomerViewModel>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuBank</title>
+</head>
+<body>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Endereco</th>
+                <th>Fone</th>
+                <th>Documento</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model)
+            {
+                <tr>
+                    <td>@m.Name</td>
+                    <td>@m.Address</td>
+                    <td>@m.Phones</td>
+                    <td>@m.Documents</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</body>
+</html>

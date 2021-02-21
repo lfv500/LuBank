@@ -4,4 +4,13 @@
     <TargetFramework>netcoreapp5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LuBank.Application\LuBank.Application.csproj" />
+    <ProjectReference Include="..\LuBank.Infra.IOC\LuBank.Infra.IOC.csproj" />
+  </ItemGroup>
+
 </Project>
