@@ -2,38 +2,68 @@
 
 @model IEnumerable<CustomerViewModel>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LuBank</title>
-</head>
-<body>
+@{
+    ViewData["Title"] = "Lista de Clientes";
+}
+<h2>@ViewData["Title"]</h2>
+
+<br>
+
+<div style="max-width: 1000px;margin: auto;">
     
-    <table>
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Endereco</th>
-                <th>Fone</th>
-                <th>Documento</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var m in Model)
-            {
+    @Html.Label("Cliente")
+    <input type="text" id="txtSearch"/>
+    <button id="btnSearch">Buscar</button>
+
+    <br>
+    <br>
+    
+    @if (Model.Any())
+    {
+        <table padding: 10px>
+            <thead>
                 <tr>
-                    <td>@m.Name</td>
-                    <td>@m.Address</td>
-                    <td>@m.Phones</td>
-                    <td>@m.Documents</td>
+                    <th>Nome</th>
+                    <th>Endereco</th>
+                    <th>Fone</th>
+                    <th>Documento</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var m in Model)
+                {
+                    <tr>
+                        <td>@m.Name</td>
+                        <td>@m.Address.Street</td>
+                        <td>@string.Join("\n", m.Phones.Select(e => e.ToString()))</td>
+                        <td>@string.Join("\n", m.Documents.Select(e => e.ToString()))</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <b>Nenhum resultado encontrado!</b>
+    }
+</div>
 
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-spacing: 4px;        
+        padding: 10px;
+        margin: 10px
+    }
+</style>
 
-</body>
-</html>
+@section Scripts
+{
+    <script>
+        $("#btnSearch")
+            .click(function ()
+            {
+                window.location.href = '@Url.Action("Search", "Customer")?name=' + $("#txtSearch").val();
+            });
+    </script>
+}

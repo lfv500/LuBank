@@ -30,10 +30,15 @@ namespace LuBank.Presentation.Web.Mvc.Controllers
         {
             return View();
         }
-
-        public IActionResult Search()
+             
+        public IActionResult Search(string name)
         {
-            var customers = _customerAppService.GetAll();
+            var searchText =  name;
+            var customers = string.IsNullOrWhiteSpace(searchText)
+                ? _customerAppService.GetAll()
+                : _customerAppService.GetAllByName(searchText);
+
+            //var customers = _customerAppService.GetAll();
             return View(customers);
         }
     }

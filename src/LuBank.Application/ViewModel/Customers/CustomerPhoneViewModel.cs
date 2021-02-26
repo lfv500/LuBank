@@ -17,5 +17,8 @@ namespace LuBank.Application.ViewModel.Customers
         public int Area { get; set; }
 
         public string Number { get; set; }
+
+        public override string ToString()
+            => $"+{Area} ({Ddd}) {Number}";
     }
 }

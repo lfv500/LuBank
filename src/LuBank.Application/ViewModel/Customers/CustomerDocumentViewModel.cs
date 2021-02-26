@@ -16,5 +16,8 @@ namespace LuBank.Application.ViewModel.Customers
         public string Value { get; set; }
 
         public CustomerDocumentType Type { get; set; }
+
+        public override string ToString()
+            => $"{Type}: {Value}"; //string.Format("{0}: {1}", Type, Value); //Type + ": " + Value;
     }
 }
